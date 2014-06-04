@@ -1,0 +1,23 @@
+{# Design\InitializrBundle\views\Default\connect_form.html.twig #}
+
+<h3>Connexion</h3>
+<form id="connexion-form" action="">
+	<fieldset>
+		<div class="part-wrapper">
+			<label>Identifiant :</label>
+			<input type="text" />
+		</div>
+		<div class="part-wrapper">
+			<label>Mot de passe :</label>
+			<input type="text" />
+		</div>
+		<div class="part-wrapper button-wrapper">
+			<button type="reset">Annuler</button>
+			<button type="submit">Valider</button>
+		</div>
+	</fieldset>
+</form>
+<p class="clearfix">
+	<a href="{{ path('design_initializr_inscription') }}" class="gauche">Creer un compte</a>
+	<a href="#" class="droite">Mot de passe oublié</a>
+</p>

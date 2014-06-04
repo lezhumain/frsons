@@ -1,0 +1,47 @@
+{# Design\InitializrBundle\views\Default\base_form.html.twig #}
+
+<h3> Ajouter une personne </h3>
+
+{{ form_start(form) }}
+	<fieldset class="">
+		
+		{{ form_errors(form, {'attr': {'class': 'error'}} ) }}
+ 	   	
+ 	   	{#
+ 	   	{% if err != "" %}
+		<div class="error" id="existe_error" >
+			{{ err }}
+		</div>		
+		{% endif %}
+		#}
+		
+	    <div class="part-wrapper">
+	        {{ form_label(form.nom, 'Nom') }}
+	        {{ form_errors(form.nom) }}
+	        {{ form_widget(form.nom) }}
+	    </div>
+	
+	    <div class="part-wrapper">
+	        {{ form_label(form.prenom, 'Prénom') }}
+	        {{ form_errors(form.prenom) }}
+	        {{ form_widget(form.prenom) }}
+	    </div>
+	    
+	    <div class="part-wrapper">
+	        {{ form_label(form.mail, 'Prénom') }}
+	        {{ form_errors(form.mail) }}
+	        {{ form_widget(form.mail) }}
+	    </div>
+	    
+	    <div class="part-wrapper">
+	        {{ form_label(form.tel, 'Prénom') }}
+	        {{ form_errors(form.tel) }}
+	        {{ form_widget(form.tel) }}
+	    </div>
+	
+		<div class="button-wrapper">
+	        {{ form_widget( form.save, {'attr': {'class': 'btn'}} ) }}
+		</div>
+	
+	</fieldset>
+{{ form_end(form) }}

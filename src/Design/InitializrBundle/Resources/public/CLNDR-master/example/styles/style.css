@@ -1,0 +1,68 @@
+/*
+ *Style du calendrier
+ */
+
+.cal_wrapper
+{
+	margin: 5% auto;
+}
+
+.main aside.cal_details_wrapper, .cal_details_wrapper
+{
+	border: thin solid grey;
+    background-color: #F5F2F0;
+    padding: 10px;
+    font-family: Helvetica, Calibri, Verdana, Georgia, Serif;
+    margin-top: 85px;
+    margin-right: 7%;
+    width: 30%;
+    color: #161617;
+}
+
+.cal1
+{
+	margin: auto auto;
+	width: 98%;
+	max-width: none;
+}
+
+.cal1 .clndr .clndr-table tr .day
+{
+    border: 1px solid #000000;
+}
+
+.day .cours_wrapper
+{
+	height: 59%;
+    position: relative;
+    width: 100%;
+}
+
+.day .cours_wrapper .cours
+{
+	background-color: #0000FF;
+    height: 40%;
+    position: relative;
+    top: 60%;
+    width: 100%;
+}
+
+.cal_details_wrapper p
+{
+	background: none;
+    border: 0px;
+    font-family: inherit;
+    margin: 0px;
+	padding-left: 5%;
+    text-align: left;
+}
+
+/* btn */
+a#evInscr
+{
+	margin: 10px 0px 10px 10%;
+    position: relative;
+    
+    display: none;
+}
+/***********/

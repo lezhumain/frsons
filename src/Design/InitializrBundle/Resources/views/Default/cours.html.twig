@@ -1,0 +1,42 @@
+{# Design\InitializrBundle\views\Default\cours.html.twig #}
+
+{% extends 'DesignInitializrBundle:Default:membre.html.twig' %}
+
+{% block membre %}
+<div class="profil_wrapper clearfix">
+	<p>
+		<strong>Mes cours :</strong><br><br>
+		Stages:<br>
+		<ul>
+		{% if stages|length == 0 %}
+			aucun
+		{% else %}
+			{% for sta in stages %}
+				<li>{{ sta.nomStage }}</li>
+			{% endfor %}
+		{% endif %}
+		</ul>
+		Cours:<br>
+		<ul>
+		{% if cours|length == 0 %}
+			aucun
+		{% else %}
+			{% for cou in cours %}
+				<li>{{ cou.idStageCours.nomStage }}</li>
+			{% endfor %}
+		{% endif %}
+		</ul>
+	</p>
+</div>
+<div>
+{{ msg }}
+</div>
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+
+{% block inlinejs %}
+<script type="text/javascript">
+</script>
+{% endblock %}

@@ -1,0 +1,84 @@
+{# Design\InitializrBundle\views\Default\inscription.html.twig #}
+
+{% extends 'DesignInitializrBundle:Default:index.html.twig' %}
+
+{% block title %}
+	Devenir membre
+{% endblock %}
+
+
+{% block pageTitle %}
+{% endblock %}
+
+{% block article %}
+{{ form_start(form, {'attr': {'class': 'center'}} ) }}
+	<h1>Devenir membre</h1>
+	<fieldset class="">
+		
+		{{ form_errors(form, {'attr': {'class': 'error'}} ) }}
+ 	   	
+	{#	{% if not form.vars.valid %}
+		<div class="error red_error">
+			{{ form_errors(form.mail) }}
+			{{ form_errors(form.tel) }}
+			{{ form_errors(form.nom) }}
+			{{ form_errors(form.prenom) }}		
+		</div>
+		{% endif %}
+	#}	
+		{% if err != "" %}
+			<div class="error red_error"> 
+				test : {{ err }}
+			</div>
+		{% endif %}
+	
+	    <div class="part-wrapper">
+	        {{ form_label(form.personne.nom, 'Nom') }}
+	        {{ form_widget(form.personne.nom) }}
+	    </div>
+	
+	    <div class="part-wrapper">
+	        {{ form_label(form.personne.prenom, 'Prénom') }}
+	        {{ form_widget(form.personne.prenom) }}
+	    </div>
+	    
+	    <div class="part-wrapper">
+	        {{ form_label(form.personne.mail, 'Mail') }}
+	        {{ form_widget(form.personne.mail) }}
+	        {{ form_errors(form.personne.mail) }}
+	    </div>
+	    
+	    <div class="part-wrapper">
+	        {{ form_label(form.personne.tel, 'Téléphone') }}
+	        {{ form_widget(form.personne.tel) }}
+	        {{ form_errors(form.personne.tel) }}
+	    </div>
+	    
+	    <div class="part-wrapper">
+	        {{ form_label(form.mdpMembre, 'Mot de passe') }}
+	        {{ form_widget(form.mdpMembre) }}
+	        {{ form_errors(form.mdpMembre) }}
+	    </div>
+	    
+	    <div class="part-wrapper">
+	        {{ form_label(form.dateNaissance, 'Date de naissance') }}
+	        {{ form_widget(form.dateNaissance) }}
+	        {{ form_errors(form.dateNaissance) }}
+	    </div>
+	    
+	    <div class="part-wrapper">
+	        {{ form_label(form.adresse, 'Adresse') }}
+	        {{ form_widget(form.adresse) }}
+	        {{ form_errors(form.adresse) }}
+	    </div>
+	
+		<div class="button-wrapper">
+	        {{ form_widget( form.save, {'attr': {'class': 'btn droite'}} ) }}
+		</div>
+	
+	</fieldset>	
+{{ form_end(form) }}
+{% endblock %}
+
+{% block aside %}
+{% endblock %}

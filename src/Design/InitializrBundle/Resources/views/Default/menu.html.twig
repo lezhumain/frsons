@@ -1,0 +1,16 @@
+<nav class="menubar">
+	<div class="menu-small">
+		<img src="{{ asset('bundles/designinitializr/img/bandes_menu.png') }}"/>
+	</div>
+	
+	<ul class="menu-responsive">
+	{% for menu in menus %}
+		<li id="{{ menu.nomRubrique|capitalize }}">
+		{# ' {{ path('design_initializr_' ~ menu.nomRubrique|lower) }} ' #}
+			<a href="http://localhost/Symfony-Initializr/web/app_dev.php/site/{{ menu.nomRubrique|lower }}">
+				{{ menu.nomRubrique|upper }}
+			</a>
+		</li>	
+	{% endfor %}
+	</ul>
+</nav>

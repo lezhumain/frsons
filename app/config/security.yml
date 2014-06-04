@@ -1,0 +1,46 @@
+# app/config/security.yml
+security:
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        secured_area:
+            pattern:    ^/
+            anonymous: ~
+            http_basic:
+                realm: "Secured Demo Area"
+            form_login:
+                login_path:  design_initializr_login
+                check_path:  design_initializr_login_check
+                default_target_path: design_initializr_membre
+                provider: chain_provider
+            logout:
+                path:   design_initializr_logout
+                target: design_initializr_homepage
+
+    access_control:
+        - { path: ^/site/membre, roles: ROLE_USER }
+        - { path: ^/site/admin, roles: ROLE_ADMIN }
+        - { path: ^/site/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        chain_provider:
+            chain :
+                providers: [in_memory, user_db]
+        user_db:
+            #id: designinitializr_membre_repository
+            entity: { class: Design\InitializrBundle\Entity\Membre }
+        in_memory:
+            memory:
+                users:
+                    admin: { password: kitten, roles: 'ROLE_ADMIN' }
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        Design\InitializrBundle\Entity\Membre: sha512

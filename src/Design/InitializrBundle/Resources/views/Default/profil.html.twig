@@ -1,0 +1,35 @@
+{# Design\InitializrBundle\views\Default\profil.html.twig #}
+
+{% extends 'DesignInitializrBundle:Default:membre.html.twig' %}
+
+{% block membre %}
+<div class="profil_wrapper clearfix">
+	<p>
+		<strong>Mes infos :</strong><br><br>
+		nom : <span id="nom">{{ user.idPersonneMembre.nom }}</span><br>
+		prenom : <span id="prenom">{{ user.idPersonneMembre.prenom }}</span><br>
+		mail : <span id="mail">{{ user.idPersonneMembre.mail }}</span><br>
+		instruments :<br>
+		<ul>
+		{% if user.idPersonneMembre.idInstrumentPratique|length == 0 %}
+			aucun
+		{% else %}
+			{% for instr in user.idPersonneMembre.idInstrumentPratique %}
+				<li>{{ instr.nomInstrument }}</li>
+			{% endfor %}
+		{% endif %}
+		</ul>
+	</p>
+</div>
+<div>
+{{ msg }}
+</div>
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+
+{% block inlinejs %}
+<script type="text/javascript">
+</script>
+{% endblock %}

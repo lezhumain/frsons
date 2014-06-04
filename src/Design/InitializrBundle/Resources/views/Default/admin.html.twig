@@ -1,0 +1,90 @@
+{# Design\InitializrBundle\views\Default\admin.html.twig #}
+
+{% extends 'DesignInitializrBundle:Default:index.html.twig' %}
+
+{% block title %}
+	Admin
+{% endblock %}
+
+
+{% block pageTitle %}
+	Aministration du site
+{% endblock %}
+
+{% block article %}
+<nav class="menubar" id="admin_menu">
+	<ul>
+		<li>
+			<a href="{{ url('design_initializr_admin_membre') }}" id="membre">Membres</a>
+		</li>
+		<li>
+			<a href="{{ url('design_initializr_admin_coursStages') }}" id="coursStages">Cours/Stages</a>
+		</li>
+		<li>
+			<a href="{{ url('design_initializr_admin_test') }}" id="test">test</a>
+		</li>		
+	</ul>
+</nav>
+
+<div class="admin" id="">
+	{% block admin %}
+	{% endblock %}
+</div>
+
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+
+{% block inlinejs %}
+<script type="text/javascript">
+	var cp = "Admin";
+
+	$(document).ready(function()
+	{
+		switch(current)
+		{
+			case "membre":
+				// corps dans voir_membre.html
+				handleFocus( $("input[checkbox]") );
+				break;
+	
+			case "coursstages":
+				// corps dans voir_coursStage.html
+				centerBut();
+				break;
+		}
+			
+		$("input:checkbox").click( function()
+		{
+			handleChkboxClic( $(this) );
+		});
+
+		// click sur le menu admin
+		$("#admin_menu ul li a").click(function()
+		{
+			var current = $("div.admin").attr("id");
+			var idClicked = $(this).attr("id");
+			
+			if( current != "vu_"+idClicked )
+			{
+				$("div.admin").attr("id", "vu_"+idClicked);
+			}
+		});
+
+		// Modif d'un cours/stage
+		$("tr>td>a.btn").click(function()
+		{
+			if( !$(this).hasClass("disabled") )
+				modif( $(this) );	// corps dans voir_coursstages.html
+		});
+
+		// dans stage_form.html en fait
+		/*
+		$("a#quitter").click(function()
+		{
+		});
+		*/
+	});
+</script>
+{% endblock %}

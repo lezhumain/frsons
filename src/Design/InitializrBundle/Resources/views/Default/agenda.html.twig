@@ -1,0 +1,107 @@
+{# Design\InitializrBundle\views\Default\agenda.html.twig #}
+
+{% extends 'DesignInitializrBundle:Default:index.html.twig' %}
+
+{% block title %}
+	Agenda
+{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bundles/designinitializr/CLNDR-master/example/styles/clndr.css') }}">
+  	<link rel="stylesheet" href="{{ asset('bundles/designinitializr/CLNDR-master/example/styles/style.css') }}">	
+{% endblock %}
+
+{% block pageTitle %}
+	L'agenda
+{% endblock %}
+
+{% block article %}
+	<div class="cal_wrapper">
+		<div class="cal1">
+		</div>
+	</div>
+{% endblock %}
+
+{% block aside %}
+	<aside class="cal_details_wrapper">
+		<span>Cliquez sur une date pour afficher les détails</span>
+		<a id="evInscr" class="btn gauche orange-btn">S'inscrire</a>
+	</aside>
+{% endblock %}
+
+{% block js %}
+	<script type="text/javascript">
+		var stages = JSON.parse('{{ stages|raw }}');
+		var cours = JSON.parse('{{ cours|raw }}');
+		var pis = '{{ path("design_initializr_inscription_stage") }}';
+
+		$("a#evInscr").click(function()
+		{
+			// recup date
+			var date = $("a#evInscr").parent().children("span").children("h1").text();
+			date = date.substring(0, date.length - 1);
+
+			// recup elem
+			var ev = getCours(dateFormat(date));
+			if(ev == null)
+			{
+				ev = getStage(dateFormat(date));
+				if(ev == null)
+					alert( "Error evnmt" );
+			}
+
+			// envoyer ca en ajax
+			$.ajax(
+			{
+				url: pis, /*Correspond au chemin du routing :​ '/connexion' */
+				type: 'POST',
+				dataType: 'json',
+				data:
+				{ /* Les données qui sont transférées, ici identifiant et mdp */
+					identifiant: ev.id
+				},
+				success: function(reponse)
+				{ /* l'AJAX fonctionne */
+				    if(reponse.success)
+					{ /* Si les logins sont bons, je charge mon body avec l'identifiant */
+				    	alert("ok");
+						//$("#main").load("fichiers/body.php", {identifiant:reponse.identifiant});
+				    }
+				    else
+					{ /*sinon message d'erreur*/
+				    	alert("Erreur inconnue");
+				    }
+			    },
+			   	error: function()
+				{ /* erreur AJAX */
+			       alert('La requête n\'a pas abouti');
+				}
+			});
+		});
+	</script>
+
+	{{ parent() }}
+
+	<script src="{{ asset('bundles/designinitializr/CLNDR-master/example/script.js') }}"></script>
+	<script src="{{ asset('bundles/designinitializr/CLNDR-master/example/json2.js') }}"></script>
+	<script src="{{ asset('bundles/designinitializr/CLNDR-master/example/underscore-min.js') }}"></script>
+	<script src="{{ asset('bundles/designinitializr/CLNDR-master/example/moment-2.5.1.js') }}"></script>
+	<script src="{{ asset('bundles/designinitializr/CLNDR-master/src/clndr.js') }}"></script>
+	<script src="{{ asset('bundles/designinitializr/CLNDR-master/example/site.js') }}"></script>
+
+{% endblock %}
+
+{% block inlinejs %}
+<script type="text/javascript">
+	var cp = "Agenda";
+	
+	//var stages = jQuery.parseJSON(json);
+	$(document).ready( function()
+	{
+		// alert(json + "##\n##" + stages);
+	
+		//console.log(stages);
+	});
+</script>
+{% endblock %}

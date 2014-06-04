@@ -1,0 +1,104 @@
+{# Design\InitializrBundle\views\Default\agenda.html.twig #}
+
+{% extends 'DesignInitializrBundle:Default:index.html.twig' %}
+
+{% block title %}
+	Agenda
+{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+	<link type="text/css"  rel="stylesheet" href="{{ asset('bundles/designinitializr/kalendar-master/css/a.css') }}">
+	<link type="text/css"  rel="stylesheet" href="{{ asset('bundles/designinitializr/kalendar-master/css/kalendar.css') }}">
+{% endblock %}
+
+{% block pageTitle %}
+	L'agenda
+{% endblock %}
+
+{% block article %}
+	<div class="main">
+		<div class="kalendar"></div>
+	</div>
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+
+{% block js %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('bundles/designinitializr/kalendar-master/js/kalendar.js') }}"></script>
+{% endblock %}
+
+{% block inlinejs %}
+<script type="text/javascript">
+	var cp = "Agenda";
+	
+	$(document).ready( function()
+	{
+		$('.kalendar').kalendar(
+		{ 
+			events: [
+				{
+					title:"Colored events",
+					url: "http://www.google.se",
+					start: {
+						date: 20140115,
+						time: "12.00"
+					},
+					end: {
+						date: "20140116",
+						time: "14.00"
+					},
+					location: "London",
+					color: "yellow"
+
+				},
+				{
+					title:"Colored events",
+					url: "http://www.google.se",
+					start: {
+						date: 20140115,
+						time: "12.00"
+					},
+					end: {
+						date: "20140116",
+						time: "14.00"
+					},
+					location: "London"
+
+				},
+				{
+					title:"Way Out West",
+					start: {
+						date: 20131230,
+						time: "12.00"
+					},
+					end: {
+						date: "20140106",
+						time: "14.00"
+					},
+					location: "Gothenburg",
+					color: "yellow"
+
+				}
+			],
+			color: "green",
+			firstDayOfWeek: "Sunday",
+			eventcolors: {
+				yellow: {
+					background: "#FC0",
+					text: "#000",
+					link: "#000"
+				},
+				blue: {
+					background: "#6180FC",
+					text: "#FFF",
+					link: "#FFF"
+				}
+			}
+		});
+
+	});
+</script>
+{% endblock %}

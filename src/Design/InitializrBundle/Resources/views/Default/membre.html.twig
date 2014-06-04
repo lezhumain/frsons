@@ -1,0 +1,42 @@
+{# Design\InitializrBundle\views\Default\membre.html.twig #}
+
+{% extends 'DesignInitializrBundle:Default:index.html.twig' %}
+
+{% block title %}
+	Membre
+{% endblock %}
+
+
+{% block pageTitle %}
+	AYO MEMBA !
+{% endblock %}
+
+{% block article %}
+<nav class="menubar" id="admin_menu">
+	<ul>
+		<li>
+			<a href="{{ url('design_initializr_membre_profil') }}" >Mon profil</a>
+		</li>
+		<li>
+			<a href="{{ url('design_initializr_membre_cours') }}">Mes cours</a>
+		</li>
+		<li>
+			<a>test3</a>
+		</li>		
+	</ul>
+</nav>
+
+<div class="membre" id="">
+	{% block membre %}
+	{% endblock %}
+</div>
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+
+{% block inlinejs %}
+<script type="text/javascript">
+	var cp = "Membre";
+</script>
+{% endblock %}

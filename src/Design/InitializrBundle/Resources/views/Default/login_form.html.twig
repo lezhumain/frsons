@@ -1,0 +1,58 @@
+{# Design\InitializrBundle\views\Default\login_form.html.twig #}
+
+{% extends 'DesignInitializrBundle:Default:index.html.twig' %}
+
+{% block title %}
+	Login
+{% endblock %}
+
+
+{% block pageTitle %}
+	Connexion
+{% endblock %}
+
+{% block article %}
+	{% if error %}
+	<div class="error" id="existe_error" >
+	    <div>{{ error.message }}</div>
+    </div>
+	{% endif %}
+	
+	<form action="{{ path('design_initializr_login_check') }}" method="post">
+		<div class="part-wrapper">
+		    <label for="username">Identifiant :</label>
+		    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+		</div>
+		<div class="part-wrapper">
+		    <label for="password">Mot de passe :</label>
+		    <input type="password" id="password" name="_password" />
+		</div>    
+		<div class="button-wrapper">
+	        <button id="valider" class="btn gauche" type="submit">Se connecter</button>
+		    <button id="quitter" class="btn droite">Retour</button>
+		</div> 	     
+	</form>
+	{% endblock %}
+	
+	{% block aside %}
+	{% endblock %}
+	
+	{% block inlinejs %}
+	<script type="text/javascript">
+		var cp = "Login";
+
+		$("#quitter").click(function()
+		{
+			if( confirm("Retourner sur la page d'accueil?") )
+				$(location).attr("href", "http://localhost/Symfony-Initializr/web/app_dev.php/site/accueil");
+		});
+
+		$("div.part-wrapper input").change(function()
+		{
+			if( $(this).val() == "" )
+				$(this).css("border", "2px solid red");
+			else
+				$(this).removeAttr("style");
+		});
+	</script>
+{% endblock %}

@@ -1,0 +1,106 @@
+{# Design\InitializrBundle\views\Default\voir_coursstages.html.twig #}
+
+{% extends 'DesignInitializrBundle:Default:admin.html.twig' %}
+
+{% block admin %}
+<div class="coursstages_wrapper clearfix">
+	{% if err != "" %}
+	<div class="error red_error"> 
+		test : {{ err }}
+	</div>
+	{% endif %}
+	<div class="stages_wrapper">
+		<h3>Les Stages</h3>
+		<div class="table4" >
+			<table id="stage">
+				{% if stages != null %}
+					<tr>
+						<td>Nom</td>
+						<td>Date</td>
+						<td>Durée</td>
+						<td>Description</td>
+						<td></td>
+					</tr>
+					{% for stage in stages %}
+					<tr>
+						<td id="nomStage">{{ stage.nomStage }}</td>
+						<td id="dateDebut">{{ stage.dateDebut|date("d\\-m\\-Y") }}</td>
+						<td id="duree">{{ stage.duree }}</td>
+						<td id="description">{{ stage.description }}</td>
+						<td>
+							<a class="btn center green-btn"><span>Modifier</span></a>
+						</td>
+					</tr>
+					{% endfor %}
+				{% else %}
+					<div>aucun stage yo</div>
+				{% endif %}
+			</table>
+			<a href="http://localhost/Symfony-Initializr/web/app_dev.php/site/admin/stage/nouvStage" class="btn gauche blue-btn">Ajouter un stage</a>
+		</div>
+	</div>
+	
+	<div class="cours_wrapper">
+		<h3>Les Cours</h3>
+		<div class="table4" >
+			<table id="cours">
+				{% if cours != null %}
+					<tr>
+						<td>Nom</td>
+						<td>Date</td>
+						<td>Périodicité</td>
+						<td>Description</td>
+						<td></td>
+					</tr>
+					{% for cour in cours %}
+					<tr>
+						<td id="nomStage">{{ cour.idStageCours.nomStage }}</td>
+						<td id="dateDebut">{{ cour.idStageCours.dateDebut|date("d\\-m\\-Y") }}</td>
+						<td id="periodicite">{{ cour.periodicite }}</td>
+						<td id="description">{{ cour.idStageCours.description }}</td>
+						<td>
+							<a class="btn center green-btn"><span>Modifier</span></a>
+						</td>
+					</tr>
+					{% endfor %}
+				{% else %}
+					<div>aucun cours yo</div>
+				{% endif %}
+			</table>
+			<a href="http://localhost/Symfony-Initializr/web/app_dev.php/site/admin/cours/nouvCours" class="btn gauche blue-btn">Ajouter un cours</a>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var current = "coursstages";
+
+	// centre les boutons "modifier" de la vue
+	function centerBut()
+	{
+		//alert('test');
+		$(".btn").css("margin-left", "auto").css("margin-right", "auto");
+	}
+
+	// modification d'un stage/cours
+	// param : $("tr>td>a.btn")
+	// affiche le aside avec le formulaire
+	// appellee de admin.html
+	function modif( clicked )
+	{
+		var elem = clicked.parent().parent(); 	// tr
+		var elem1 = elem.parent().parent();		// table
+		// nom du stage a modif
+		var nom = elem.children("td#nomStage").text();
+		var type = elem1.attr("id");
+		// url pour appeller le controller
+		var url = "{{ path('design_initializr_admin') }}";
+
+		url += "/" + type + "/" + nom;
+		
+		$(location).attr('href', url);
+	}
+</script>
+{% endblock %}
+
+{% block aside %}
+{% endblock %}

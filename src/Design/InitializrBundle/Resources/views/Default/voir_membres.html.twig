@@ -1,0 +1,68 @@
+{# Design\InitializrBundle\views\Default\voir_membres.html.twig #}
+
+{% extends 'DesignInitializrBundle:Default:admin.html.twig' %}
+
+{% block admin %}
+<div class="membre_wrapper">
+	{% if err != "" %}
+	<div class="error red_error"> 
+		test : {{ err }}
+	</div>
+	{% endif %}
+	
+	<div class="table4" >
+		<table>
+			{% if membres != null %}
+				<tr>
+					<td>Nom</td>
+					<td>Prénom</td>
+					<td>Adresse email</td>
+					<td>Téléphone</td>
+					<td>Validation</td>				
+				</tr>
+				{% for membre in membres %}
+				<tr>
+					<td id="nom">{{ membre.idPersonneMembre.nom }}</td>
+					<td id="prenom">{{ membre.idPersonneMembre.prenom }}</td>
+					<td id="mail">{{ membre.idPersonneMembre.mail }}</td>
+					<td id="tel">{{ membre.idPersonneMembre.tel }}</td>
+					<td>
+						<input type="checkbox" {% if membre.estValideMembre %}checked="checked" disabled="disabled"{% endif %}></input>
+					</td>
+				</tr>
+				{% endfor %}
+			{% else %}
+				<div>aucun membre yo</div>
+			{% endif %}
+		</table>
+	</div>
+</div>
+<script type="text/javascript">
+	// appelee depuis admin.html
+	function handleFocus()
+	{
+		$("input:checkbox").each( function()
+		{
+			if( !$(this).hasAttr("checked") )
+				$(this).css("border", "2px solid orange");
+		});
+	}
+
+	function handleChkboxClic( clicked )
+	{
+		var url = "{{ url('design_initializr_admin_membre') }}?";
+		var tr = clicked.parent().parent();
+		var nom = tr.children("#nom").text();
+		var prenom = tr.children("#prenom").text();
+
+		url += "nom=" + nom + "&prenom=" + prenom;
+
+		if( confirm( "\nConfirmer?" ) )
+			$(location).attr('href', url);
+		else
+			clicked.removeAttr( "checked" );
+	}
+
+	var current = "membre";
+</script>
+{% endblock %}

@@ -1,0 +1,78 @@
+{# Design\InitializrBundle\views\Default\stage_form.html.twig #}
+
+{% extends 'DesignInitializrBundle:Default:admin.html.twig' %}
+
+{% block admin %}
+<div class="modStage center">
+	<h3> Modifier un stage </h3>
+	
+	{{ form_start(form) }}
+		<fieldset class="">
+			
+			{{ form_errors(form, {'attr': {'class': 'error red_error'}} ) }}
+	 	   	
+	 	   	{% if err != "" %}
+			<div class="error" id="existe_error" >
+				{{ err }}
+			</div>		
+			{% endif %}
+			
+		    <div class="part-wrapper">
+		        {{ form_label(form.nomStage, 'Nom') }}
+		        {{ form_errors(form.nomStage) }}
+		        {{ form_widget(form.nomStage) }}
+		    </div>
+		
+		    <div class="part-wrapper">
+		        {{ form_label(form.dateDebut, 'Date') }}
+		        {{ form_errors(form.dateDebut) }}
+		        {{ form_widget(form.dateDebut) }}
+		    </div>
+		    
+		    <div class="part-wrapper">
+		        {{ form_label(form.duree, 'Durée (J)') }}
+		        {{ form_errors(form.duree) }}
+		        {{ form_widget(form.duree) }}
+		    </div>
+		    
+		    <div class="part-wrapper">
+		        {{ form_label(form.idInstrumentPortesur, 'Instrument concerné') }}
+		        {{ form_errors(form.idInstrumentPortesur) }}
+		        {{ form_widget(form.idInstrumentPortesur) }}
+		    </div>
+		    
+   		    <div class="part-wrapper">
+		        {{ form_label(form.description, 'Description') }}
+		        {{ form_errors(form.description) }}
+		        {{ form_widget(form.description) }}
+		    </div>
+		    
+		    <div class="button-wrapper">
+		        {{ form_widget( form.save, {'attr': {'class': 'btn gauche'}}, 'Valide' ) }}
+			    <button id="quitter" class="btn droite">Fermer</button>
+			</div>
+		{#
+			<div class="button-wrapper">
+				<a id="valider" class="btn gauche"><span>Valider</span></a>
+				<a id="quitter" class="btn droite"><span>Fermer</span></a>
+			</div>
+		#}
+		</fieldset>
+	{{ form_end(form) }}
+	<script type="text/javascript">
+		var current = "modstage";
+
+		$(".button-wrapper #quitter").click(function()
+		{
+			var url = "{{ path('design_initializr_admin_coursStages') }}";
+			
+			if( confirm("Quitter cette page?") )
+				$(location).attr('href', url);
+		});
+	</script>
+</div>
+{% endblock %}
+
+
+{% block aside %}
+{% endblock %}

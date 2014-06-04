@@ -1,0 +1,4 @@
+design_initializr:
+    resource: "@DesignInitializrBundle/Resources/config/routing.yml"
+    prefix:   /
+

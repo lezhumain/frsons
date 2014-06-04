@@ -1,0 +1,94 @@
+{# Design\InitializrBundle\views\Default\cours_form.html.twig #}
+
+{% extends 'DesignInitializrBundle:Default:admin.html.twig' %}
+
+{% block admin %}
+<div class="modCours center">
+	<h3> Modifier un cours </h3>
+	
+	{{ form_start(form) }}
+		<fieldset class="">
+			
+			{{ form_errors(form, {'attr': {'class': 'error red_error'}} ) }}
+	 	   	
+	 	   	{% if err != "" %}
+			<div class="error" id="existe_error" >
+				{{ err }}
+			</div>		
+			{% endif %}
+			
+		    <div class="part-wrapper">
+		        {{ form_label(form.idStageCours.nomStage, 'Nom') }}
+		        {{ form_errors(form.idStageCours.nomStage) }}
+		        {{ form_widget(form.idStageCours.nomStage) }}
+		    </div>
+		
+		    <div class="part-wrapper">
+		        {{ form_label(form.idStageCours.dateDebut, 'Date') }}
+		        {{ form_errors(form.idStageCours.dateDebut) }}
+		        {{ form_widget(form.idStageCours.dateDebut) }}
+		    </div>
+		    
+		    <div class="part-wrapper">
+		        {{ form_label(form.idStageCours.duree, 'Durée (J)') }}
+		        {{ form_errors(form.idStageCours.duree) }}
+		        {{ form_widget(form.idStageCours.duree) }}
+		    </div>
+		    
+		    <div class="part-wrapper">
+		        {{ form_label(form.idStageCours.idInstrumentPortesur, 'Instrument concerné') }}
+		        {{ form_errors(form.idStageCours.idInstrumentPortesur) }}
+		        {{ form_widget(form.idStageCours.idInstrumentPortesur) }}
+		    </div>
+		    
+   		    <div class="part-wrapper">
+		        {{ form_label(form.idStageCours.description, 'Description') }}
+		        {{ form_errors(form.idStageCours.description) }}
+		        {{ form_widget(form.idStageCours.description) }}
+		    </div>
+
+            <div class="part-wrapper">
+                {{ form_label(form.periodicite, 'Périodicité (J)') }}
+                {{ form_errors(form.periodicite) }}
+                {{ form_widget(form.periodicite) }}
+            </div>
+		    
+		    <div class="button-wrapper">
+		        {{ form_widget( form.save, {'attr': {'class': 'btn gauche'}}, 'Valider') }}
+                <a id="quitter" class="btn droite">Quitter</a>
+			</div>
+		{#
+			<div class="button-wrapper">
+				<a id="valider" class="btn gauche"><span>Valider</span></a>
+				<a id="quitter" class="btn droite"><span>Fermer</span></a>
+			</div>
+		#}
+		</fieldset>
+	{{ form_end(form) }}
+
+	<script type="text/javascript">
+		var current = "modcours";
+
+		$("form>div").remove(); //vire la div en trop (ajoutee par le form de stage)
+
+		/*
+		 * Clic sur le bouton "quitter" :
+		 * 
+		 * Redirige vers 
+		 * http://localhost/Symfony-Initializr/web/app_dev.php/site/admin/coursStages
+		 * apres confirmation
+		 */
+        $(".button-wrapper #quitter").click(function()
+        {
+            var url = "{{ path('design_initializr_admin_coursStages') }}";
+
+            if( confirm("Retourner sur la page d'administration?") )
+                $(location).attr('href', url);
+        })
+	</script>
+</div>
+{% endblock %}
+
+
+{% block aside %}
+{% endblock %}
