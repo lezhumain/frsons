@@ -58,7 +58,7 @@
 				type: 'POST',
 				dataType: 'json',
 				data:
-				{ /* Les données qui sont transférées, ici identifiant et mdp */
+				{
 					identifiant: ev.id
 				},
 				success: function(reponse)
@@ -70,7 +70,7 @@
 				    }
 				    else
 					{ /*sinon message d'erreur*/
-				    	alert("Erreur inconnue");
+				    	alert("Erreur...\n Etes-vous connecté?");
 				    }
 			    },
 			   	error: function()
